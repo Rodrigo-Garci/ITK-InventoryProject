@@ -1,0 +1,38 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 12-27-2022
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+
+<aura:component controller="Inputformapex">
+    <aura:attribute name="product"   type="Prodoct__c"/>
+    <aura:attribute name="batch" type="Batch__c"/>
+    <aura:attribute name="material" type="Material__c[]"/>
+    <aura:attribute name="optionproduct" type="string" default=""/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="init" action="{!c.initBatch}" value="{!this}"/>
+   <!-- / PAGE BODY-->
+   <form class="slds-form_stacked">
+       <lightning:select label="Product" required="true" onchange="{!c.materials}" value="{!v.optionproduct}">
+        <option value="">choose one...</option>
+        <aura:iteration items="{!v.product}" var="product">
+            <option text="{!product.Name}" value="{!product.Id}" selected="{!product.selected}"/>
+        </aura:iteration>
+       </lightning:select>
+       <lightning:select label="Batch" required="true">
+        <option value="">choose one...</option>
+        <aura:iteration items="{!v.batch}" var="batch">
+            <option text="{!batch.Name}" value="{!batch.Name}"/>
+        </aura:iteration>
+       </lightning:select>
+    </form>
+
+    <!--<aura:iteration items="{!v.material}" var="material">
+        [!v.material.Name}
+    </aura:iteration>-->
+<!-- / PAGE BODY-->
+</aura:component>	
+  
